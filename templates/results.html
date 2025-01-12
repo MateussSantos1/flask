@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado do Processamento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <img src="/static/logo.png" alt="Logo da Empresa"/>
+        <h1>Resultado do Processamento de Arquivos</h1>
+    </header>
+
+    <div class="container">
+        <h2>Resumo do Processo:</h2>
+        <p><strong>Total de comprovantes salvos:</strong> {{ count_salvos }}</p>
+        <p><strong>Total de comprovantes não encontrados:</strong> {{ count_nao_salvos }}</p>
+        <p><strong>Diretório de saída:</strong> {{ output_directory }}</p>
+
+        {% if nomes_nao_encontrados %}
+        <h3>Nomes Não Encontrados:</h3>
+        <ul>
+            {% for nome in nomes_nao_encontrados %}
+                <li>{{ nome }}</li>
+            {% endfor %}
+        </ul>
+        <p><strong>Arquivo gerado com os nomes não encontrados:</strong> <a href="{{ output_nao_encontrados }}" target="_blank">{{ output_nao_encontrados }}</a></p>
+        {% else %}
+        <p>Não houve nomes não encontrados.</p>
+        {% endif %}
+
+        <!-- Link para retornar à página inicial -->
+        <p><a href="{{ url_for('index') }}">Novo Processo de Separação</a></p>
+    </div>
+    <footer>
+        <p>&copy; 2025 - Sistema de Separação de Comprovantes. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

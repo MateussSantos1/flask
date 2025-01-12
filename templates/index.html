@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Separação de Comprovantes</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <img src="/static/logo.png" alt="Logo da Empresa" />
+        <h1>Sistema de Separação de Comprovantes</h1>
+    </header>
+    <main>
+        <h2>Envie os arquivos para processamento</h2>
+        <form id="uploadForm" action="/process" method="post" enctype="multipart/form-data">
+            <label for="pdf_file">Conjunto de Comprovantes em PDF:</label>
+            <input type="file" name="pdf_file" id="pdf_file" required>
+
+            <label for="excel_file">Relação da Folha de Pagamento em Excel:</label>
+            <input type="file" name="excel_file" id="excel_file" required>
+
+            <label for="sheet_name">Número da OS:</label>
+            <input type="text" name="sheet_name" id="sheet_name" placeholder="Exemplo: 199" required>
+
+            <label for="output_directory">Digite o diretório de saída:</label>
+            <input type="text" name="output_directory" id="output_directory" placeholder="C:/caminho/para/o/diretorio" required>
+
+            <button type="submit">Processar</button>
+        </form>
+        <div id="loading" class="loading" style="display: none;">
+            <p>Processando, por favor aguarde...</p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 - Sistema de Separação de Comprovantes. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const loading = document.getElementById('loading');
+
+        form.addEventListener('submit', function() {
+            loading.style.display = 'block'; // Exibir a tela de carregamento
+        });
+    </script>
+</body>
+</html>
